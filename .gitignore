@@ -1,0 +1,27 @@
+.venv/
+venv/
+bird_detection_env/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.idea/
+.vscode/
+
+# CUB-200-2011 图片资料集与转换后的重复图片
+data/CUB_200_2011/
+data/yolo_format/
+
+# 执行期间产生的档案
+runs/
+test_results/
+outputs/
+*.log
+
+# 额外模型汇出档通常很大；需要时使用 Git LFS
+*.onnx
+*.torchscript
+*.engine
+
+# 作业系统档案
+.DS_Store
+Thumbs.db
