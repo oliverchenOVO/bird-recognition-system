@@ -1,43 +1,43 @@
-# CUB-200 鸟类检测与辨识系统
+# CUB-200 鳥類偵測與辨識系統
 
-这是一个以 YOLOv8s 与 CUB-200-2011 数据集完成的桌面鸟类辨识系统。系统可以载入图片、检测鸟类位置、辨识 200 个鸟种、显示置信度与热力图，并将结果导出为 CSV。
+這是一個以 YOLOv8s 與 CUB-200-2011 資料集完成的桌面鳥類辨識系統。系統可以載入圖片、偵測鳥類位置、辨識 200 個鳥種、顯示信賴度與熱力圖，並將結果匯出為 CSV。
 
 ## 成果摘要
 
-保存的 100 epochs 训练纪录显示：
+保存的 100 epochs 訓練紀錄顯示：
 
-| 指标 | 结果 |
+| 指標 | 結果 |
 |---|---:|
 | Precision | 0.8097 |
 | Recall | 0.7631 |
 | mAP@50 | **0.8265** |
 | mAP@50–95 | **0.7269** |
 
-![训练指标](results/results.png)
+![訓練指標](results/results.png)
 
 ## 主要功能
 
-- PyQt6 桌面图形界面
-- YOLO `.pt` 与 `.onnx` 模型载入
-- 单张图片鸟类检测与 200 类鸟种辨识
-- CONF 与 IOU 阈值调整
-- 检测框、中文鸟名、置信度与热力图显示
-- 检测结果 CSV 导出
-- CUB-200-2011 标注转换、训练与模型导出流程
+- PyQt6 桌面圖形介面
+- YOLO `.pt` 與 `.onnx` 模型載入
+- 單張圖片鳥類偵測與 200 類鳥種辨識
+- CONF 與 IOU 閾值調整
+- 偵測框、中文鳥名、信賴度與熱力圖顯示
+- 偵測結果 CSV 匯出
+- CUB-200-2011 標註轉換、訓練與模型匯出流程
 
-## 资料夹结构
+## 資料夾結構
 
 ```text
 .
-├── src/                 # 桌面辨识应用
-├── training/            # CUB-200 转 YOLO 与训练程式
-├── models/              # 保存的最佳训练权重
-├── data/classes.txt     # 200 个类别名称（不含图片资料集）
-├── results/             # 训练指标、混淆矩阵与输出范例
-└── docs/course-reports/ # 期中、期末报告与简报
+├── src/                 # 桌面辨識應用程式
+├── training/            # CUB-200 轉 YOLO 與訓練程式
+├── models/              # 保存的最佳訓練權重
+├── data/classes.txt     # 200 個類別名稱（不含圖片資料集）
+├── results/             # 訓練指標、混淆矩陣與輸出範例
+└── docs/course-reports/ # 期中、期末報告與簡報
 ```
 
-## 执行桌面应用
+## 執行桌面應用程式
 
 ```powershell
 python -m venv .venv
@@ -46,36 +46,35 @@ pip install -r requirements.txt
 python src\bird_detection_app.py
 ```
 
-启动后按「载入模型」，选择：
+啟動後按「載入模型」，選擇：
 
 ```text
 models/cub200-yolov8s-best.pt
 ```
 
-再选择一张图片并开始检测。
+再選擇一張圖片並開始偵測。
 
-## 重新训练
+## 重新訓練
 
-本仓库不包含 CUB-200-2011 图片资料集。取得资料集后，可执行：
+本倉庫不包含 CUB-200-2011 圖片資料集。取得資料集後，可執行：
 
 ```powershell
 python training\train_cub_yolo.py --mode train --dataset "D:\path\to\CUB_200_2011" --model_size s --epochs 100 --batch_size 16 --img_size 640
 ```
 
-训练流程会读取原始 CUB 标注，将边界框转换成 YOLO 格式，再训练模型并输出评估结果。
+訓練流程會讀取原始 CUB 標註，將邊界框轉換成 YOLO 格式，再訓練模型並輸出評估結果。
 
-## 训练结果
+## 訓練結果
 
-- [完整训练纪录（CSV）](results/results.csv)
-- [混淆矩阵](results/confusion_matrix.png)
-- [正规化混淆矩阵](results/confusion_matrix_normalized.png)
-- [Precision–Recall 曲线](results/PR_curve.png)
-- [检测结果输出范例](results/sample-detection.csv)
-- [期末报告](docs/course-reports/final-report.pdf)
-- [期中报告](docs/course-reports/midterm-report.pdf)
-- [课程简报](docs/course-reports/presentation.pptx)
+- [完整訓練紀錄（CSV）](results/results.csv)
+- [混淆矩陣](results/confusion_matrix.png)
+- [正規化混淆矩陣](results/confusion_matrix_normalized.png)
+- [Precision–Recall 曲線](results/PR_curve.png)
+- [偵測結果輸出範例](results/sample-detection.csv)
+- [期末報告](docs/course-reports/final-report.pdf)
+- [期中報告](docs/course-reports/midterm-report.pdf)
+- [課程簡報](docs/course-reports/presentation.pptx)
 
-## 资料与授权说明
+## 資料與授權說明
 
-CUB-200-2011 原始图片、Python 虚拟环境、训练快取和重复程式版本没有放进这个资料夹。公开仓库前，请先阅读 [公开检查清单](docs/PUBLICATION_CHECKLIST.md)。目前未加入开源许可证；若公开发布，在选择许可证前仍应确认程式、训练权重、课程报告图片与第三方套件的使用条件。
-
+CUB-200-2011 原始圖片、Python 虛擬環境、訓練快取和重複程式版本沒有放進這個資料夾。公開倉庫前，請先閱讀 [公開檢查清單](docs/PUBLICATION_CHECKLIST.md)。目前未加入開源授權條款；若公開發布，在選擇授權條款前仍應確認程式、訓練權重、課程報告圖片與第三方套件的使用條件。
